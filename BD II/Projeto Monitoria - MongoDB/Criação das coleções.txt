@@ -1,0 +1,181 @@
+// Editais
+// ED1
+db.edital.insertOne(
+{NumEdital:1,
+ AnoEdital:2016,
+ CandidatosInscritos:[]
+})
+//ED2
+db.edital.insertOne(
+{NumEdital:2,
+ AnoEdital:2016,
+ CandidatosInscritos:[]
+})
+//ED3
+db.edital.insertOne(
+{NumEdital:1,
+ AnoEdital:2017,
+ CandidatosInscritos:[]
+})
+//ED4
+db.edital.insertOne(
+{NumEdital:1,
+ AnoEdital:2015,
+ CandidatosInscritos:[]
+})
+//ED5
+db.edital.insertOne(
+{NumEdital:2,
+ AnoEdital:2015,
+ CandidatosInscritos:[]
+})
+//ED6
+db.edital.insertOne(
+{NumEdital:2,
+ AnoEdital:2014,
+ CandidatosInscritos:[]
+})
+//ED7
+db.edital.insertOne(
+{NumEdital:1,
+ AnoEdital:2018,
+ CandidatosInscritos:[]
+})
+ 
+// Candidatos
+// candidato 1 
+db.candidato.insertOne(
+ {   
+     Nome:"Glaucio",
+     Matricula:"20161370003",
+     Email:"glauciomendoncajp@gmail.com",
+     Nota:70.5,
+     CRE:80.0,
+     Classificado:false,
+     Bolsista:false,  //Opcional
+     Edital:[{Edital1:ObjectId("59a4105e60cd6a8f10d55671"), NumEdital:1, AnoEdital:2016},        
+             {Edital2:ObjectId("59a410b360cd6a8f10d55676"), NumEdital:2, AnoEdital:2014}],          
+     
+             Telefone:["83999999999","83888888888"],
+     Endereco:{Rua:"rua 10", numero:81, Bairro:"Valentina", cep:"58054-121"}
+ })
+ //referencia contraria
+ db.edital.update({NumEdital:1, AnoEdital:2016}, 
+    {$set:{
+     CandidatosInscritos:["20161370003"]}},
+     {upsert:true})
+ db.edital.update({NumEdital:2, AnoEdital:2014}, 
+    {$set:{
+     CandidatosInscritos:["20161370003"]}},
+     {upsert:true})
+     
+ // candidato 2
+ db.candidato.insertOne(
+ {   
+     Nome:"victor",
+     Matricula:"20161370004",
+     Email:"eu@gmail.com",
+     Nota:70.5,
+     CRE:80.0,
+     Classificado:false,
+     Bolsista:false,  //Opcional
+     Edital:[{Edital1:ObjectId("59a4105e60cd6a8f10d55671"), NumEdital:1, AnoEdital:2016},        
+             {Edital2:ObjectId("59a410b360cd6a8f10d55676"), NumEdital:2, AnoEdital:2014}],          
+     
+     Telefone:["83999999999","83888888888"],
+     Endereco:{Rua:"rua 20", numero:5, Bairro:"Bancarios", cep:"58054-121"}
+ })
+ //referencia contraria
+ db.edital.update({NumEdital:1, AnoEdital:2016}, 
+    {$set:{
+     CandidatosInscritos:["20161370003","20161370004"]}},
+     {upsert:true})
+ 
+ db.edital.update({NumEdital:2, AnoEdital:2014}, 
+    {$set:{
+     CandidatosInscritos:["20161370003","20161370004"]}},
+     {upsert:true})
+     
+// candidato 3 
+ db.candidato.insertOne(
+ {   
+     Nome:"Josefa",
+     Matricula:"20161370005",
+     Email:"josfa@gmail.com",
+     Nota:50.5,
+     CRE:80.0,
+     Classificado:false,
+     Bolsista:false,  //Opcional
+     Edital:[{Edital1:ObjectId("59a4106960cd6a8f10d55672"), NumEdital:2, AnoEdital:2015},        
+             {Edital2:ObjectId("59a4109560cd6a8f10d55675"), NumEdital:2, AnoEdital:2016}],          
+     
+             Telefone:["83999999999","83888888888"],
+     Endereco:{Rua:"rua 10", numero:81, Bairro:"Valentina", cep:"58054-121"}
+ })
+ 
+ //referencia contraria
+ db.edital.update({NumEdital:2, AnoEdital:2015}, 
+    {$set:{
+     CandidatosInscritos:["20161370005"]}},
+     {upsert:true})
+ 
+ db.edital.update({NumEdital:2, AnoEdital:2016}, 
+    {$set:{
+     CandidatosInscritos:["20161370005"]}},
+     {upsert:true})
+ 
+ // candidato 4
+ db.candidato.insertOne(
+ {   
+     Nome:"Evertu",
+     Matricula:"20161370006",
+     Email:"ev@gmail.com",
+     Nota:60.5,
+     CRE:90.0,
+     Classificado:false,
+     Bolsista:false,  //Opcional
+     Edital:[{Edital1:ObjectId("59a410b860cd6a8f10d55677"), NumEdital:1, AnoEdital:2018},        
+             {Edital2:ObjectId("59a410b360cd6a8f10d55676"), NumEdital:2, AnoEdital:2014}],          
+     
+             Telefone:["83999999999","83888888888"],
+     Endereco:{Rua:"rua 10", numero:81, Bairro:"Valentina", cep:"58054-121"}
+ })
+ 
+ // referencia contraria
+ db.edital.update({NumEdital:1, AnoEdital:2018}, 
+    {$set:{
+     CandidatosInscritos:["20161370006"]}},
+     {upsert:true})
+ 
+ db.edital.update({NumEdital:2, AnoEdital:2014}, 
+    {$set:{
+     CandidatosInscritos:["20161370003","20161370004","20161370006"]}},
+     {upsert:true})
+ 
+ // candidato 5
+ db.candidato.insertOne(
+ {   
+     Nome:"dengoso",
+     Matricula:"20161370007",
+     Email:"ronily@gmail.com",
+     Nota:100,
+     CRE:50.0,
+     Classificado:false,
+     Bolsista:false,  //Opcional
+     Edital:[{Edital1:ObjectId("59a4108c60cd6a8f10d55674"), NumEdital:1, AnoEdital:2015},        
+             {Edital2:ObjectId("59a410b360cd6a8f10d55676"), NumEdital:2, AnoEdital:2014}],          
+     
+             Telefone:["83999999999","83888888888"],
+     Endereco:{Rua:"rua 10", numero:81, Bairro:"Valentina", cep:"58054-121"}
+ })
+ 
+ // referencia contraria
+ db.edital.update({NumEdital:1, AnoEdital:2015}, 
+    {$set:{
+     CandidatosInscritos:["20161370007"]}},
+     {upsert:true})
+ 
+ db.edital.update({NumEdital:2, AnoEdital:2014}, 
+    {$set:{
+     CandidatosInscritos:["20161370003","20161370004","20161370006","20161370007"]}},
+     {upsert:true})

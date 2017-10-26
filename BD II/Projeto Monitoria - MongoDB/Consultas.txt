@@ -1,0 +1,46 @@
+ // coleção inteira
+ 
+ // consultar todos os editais e candidatos
+ db.candidato.find()
+ db.edital.find()
+ 
+ //contagem de documentos na coleção
+ 
+ // retorne a quantidade de registros em candidadato
+ db.candidato.aggregate(
+    [
+        { $group: { _id: null, count: { $sum: 1 } } }
+    ]   
+ )
+//filtros diversos:
+        
+// todos os editais depois de 2015
+db.edital.find({AnoEdital:{$gt:2015}})
+// buscar candidato de nome especifico
+db.candidato.find({Nome:{$eq:"Glaucio"}})
+// buscar candidatos inscritos no edital do ano especificado
+db.candidato.find({"Edital.AnoEdital":{$in:[2015]}})
+
+// com projeção:
+// candidatos com nota maior que 60.5.
+db.candidato.find({"Nota":{$gt:60.5}},{"Nome":1})
+// email dos candidatos inscritos no edital especificado.
+db.candidato.find({"Edital.AnoEdital":2014, "Edital.NumEdital":2},{_id:0,"Email":1})
+// inscritos nos editais abaixo de 2016
+db.edital.find({AnoEdital:{$lt:2016}},{"CandidatosInscritos":1})
+
+// todos os candidatos que usam gmail.
+db.candidato.find({ "Email": {$regex :  /@gmail.com$/ }  },{"Nome":1,"Email":1,_id:0})
+// consulta a array
+db.candidato.find({"Nome": "Glaucio"},{"Telefone":[0], "Nome":1})
+//retorne apenas os 2 primeiros registros com nota maior que 60.5
+db.candidato.find({"Nota":{$gt:60.5}},{"Nome":1}).limit(2)
+// organizar os candidatos por matricula
+db.candidato.find({},{"Nome":1, "Matricula":1, _id:0}).sort({"Matricula":1})
+
+//remover
+ db.candidato.remove({Nome:"Glaucio"})
+
+
+//Ponto positivo: consigo praticamente tudo que preciso em uma consulta;
+// ponto negativo: não garante a integridade principalmente na exclusão.
